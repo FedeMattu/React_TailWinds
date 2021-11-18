@@ -1,10 +1,36 @@
 import React from "react";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 
 
 const Gallery = () => {
+
+
+  const div_pannello = useRef(null);
+  const div_linea = useRef(null);
+
+
+  useEffect((pin = true) => {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.from(div_linea.current, {
+          scrollTrigger: {
+              trigger: div_pannello.current,
+              scrub: true,
+              pin: pin,
+              start: "top top",
+              end: "+=200%"
+          },
+          duration: 0.5,
+          opacity: 0, 
+      })
+
+  });
+
+
   return (
-    <div>
+    <div ref={div_pannello}>
       <div className="flex justify-center items-center">
         <div className="2xl:mx-auto 2xl:container lg:px-20 lg:py-16 md:py-12 md:px-6 py-9 px-4 w-96 sm:w-auto">
           <div role="main" className="flex flex-col items-center justify-center">
@@ -14,6 +40,7 @@ const Gallery = () => {
               sentence isn't quite enough</p>
           </div>
           <div className="lg:flex items-stretch md:mt-12 mt-8">
+            
             <div className="lg:w-1/2">
               <div className="sm:flex items-center justify-between xl:gap-x-8 gap-x-6">
                 <div className="sm:w-1/2 relative">
@@ -77,7 +104,9 @@ const Gallery = () => {
                 <img className="w-full mt-4 sm:hidden" src="https://i.ibb.co/6XYbN7f/Rectangle-29.png" alt="sitting place" />
               </div>
             </div>
-            <div className="lg:w-1/2 xl:ml-8 lg:ml-4 lg:mt-0 md:mt-6 mt-4 lg:flex flex-col justify-between">
+            
+
+            <div className="lg:w-1/2 xl:ml-8 lg:ml-4 lg:mt-0 md:mt-6 mt-4 lg:flex flex-col justify-between" ref={div_linea}>
               <div className="relative">
                 <div>
                   <p className="md:p-10 p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0">12 April 2021</p>
@@ -118,6 +147,7 @@ const Gallery = () => {
                   </div>
                   <img src="https://i.ibb.co/3yvZBpm/img-5.png" className="w-full" alt="chair" />
                 </div>
+                
                 <div className="relative w-full sm:mt-0 mt-4">
                   <div>
                     <p className="p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0">12 April 2021</p>
@@ -137,8 +167,10 @@ const Gallery = () => {
                   </div>
                   <img src="https://i.ibb.co/gDdnJb5/img-6.png" className="w-full" alt="wall design" />
                 </div>
+
               </div>
             </div>
+
           </div>
         </div>
       </div>

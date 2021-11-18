@@ -1,10 +1,13 @@
-import React from "react";
-import Slide from "../Components/Slide";
+import React, { useState } from "react";
 
 const Contact = () => {
+
+  // const [language, setLanguage] = useState("ru");
+  // const [text, setText] = useState("");
+
   return (
-    <div><h1>Contact</h1>
-      <Slide />
+    <div>
+      CIAOOOO
     </div>
 
   );
